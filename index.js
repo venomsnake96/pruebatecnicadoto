@@ -12,10 +12,10 @@ app.get('/api/celulares', async (req, res) => {
         while (allItems.length < 1000) {
             const response = await axios.get('https://api.mercadolibre.com/sites/MLM/search', {
                 params: {
-                    category: 'MLM1055', // Categoría para celulares
-                    sort: 'price_asc', // Ordenar por precio ascendente
-                    limit: limit, // Obtener 50 artículos por solicitud
-                    offset: offset // Desplazamiento
+                    category: 'MLM1055', 
+                    sort: 'price_asc', 
+                    limit: limit, 
+                    offset: offset 
                 }
             });
 
@@ -34,11 +34,11 @@ app.get('/api/celulares', async (req, res) => {
             offset += limit;
 
             if (response.data.results.length < limit) {
-                break; // No hay más resultados
+                break; 
             }
         }
 
-        res.json(allItems.slice(0, 1000)); // Devolver solo los primeros 1000 artículos
+        res.json(allItems.slice(0, 1000)); 
     } catch (error) {
         console.error(error);
         res.status(500).send('Error al consultar la API de Mercado Libre');
