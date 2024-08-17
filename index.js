@@ -25,7 +25,7 @@ app.get('/api/celulares', async (req, res) => {
                 brand: item.attributes.find(attr => attr.id === 'BRAND')?.value_name || 'N/A',
                 freeShipping: item.shipping.free_shipping,
                 logisticType: item.shipping.logistic_type,
-                sellerLocation: item.seller_address?.state?.name || 'Ubicación desconocida',
+                sellerLocation: item.seller_address?.city?.name || 'Ubicación desconocida',
                 condition: item.condition,
                 priceRange: item.price
             }));
